@@ -5,20 +5,17 @@
 #include <sys/wait.h>
 #include "pthread.h"
 using namespace std;
-void*doit(void*);
-int i=0,j=0;
-int sum = 1;
+void*doit(void* arg);
 int n;
 int k;
 int main(){
     pthread_t tid;
     pid_t pid, cpid;
-
-    int status;
-    pthread_create(&tid, NULL, doit,NULL);
-
-    cout>>"Please enter a number to fibonacci sequence";
+    cout>>"Please enter fibonacci sequence number";
     cin>>n;
+    int status;
+    pthread_create(&tid, NULL, doit,(void*)&n);
+
 
     pid = fork();
 
@@ -42,18 +39,15 @@ int main(){
    }
    
    
-void*doit(void*vptr){
-	for(k=1;k<n;k++)
-        {
-                i = j;
-
-                j= sum;
-
-                sum = i + j;
-
-                printf("Fibonacci seqence is: %d\n",sum);
-
-        }
-	
-	return(NULL);
+void*doit(void* arg){
+	int c, fib0 = 0, fib1 = 1, fibN;
+	for ( c = 0 ; c <n; c++ ){
+		if ( c <= 1 )
+		fibN = c;
+		else{
+			fibN = fib0 + fib1;
+			first = second;
+			fib1 = fibN;
+		}
+		cout << fibN<<endl;
 }
